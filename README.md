@@ -1,6 +1,6 @@
 # O problema
 
-Eu estava procurando por alguma ferramenta como [FeatureBook] (https://www.npmjs.com/package/featurebook) ou [Feature Express] (https://www.npmjs.com/package/feature-express) para transformar meus arquivos `.spec` em um relatório que eu poderia compartilhar, sem executar os testes. Infelizmente, não encontrei nada...
+Eu estava procurando por alguma ferramenta como [FeatureBook](https://www.npmjs.com/package/featurebook) ou [Feature Express](https://www.npmjs.com/package/feature-express) para transformar meus arquivos `.spec` em um relatório que eu poderia compartilhar, sem executar os testes. Infelizmente, não encontrei nada...
 
 Então eu fiz este script `.sh` para fazer isso por mim.
 
