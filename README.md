@@ -18,6 +18,8 @@ Por ainda estar em desenvolvimento, é necessário conferir após rodar o script
 
 Para funcionar, seu cenários devem estar dentro da pasta da estrutura padrão do Cypress `cypress/integration`. Ele irá olhar todos os aquivos dentro dessa pasta e subpastas. Qualquer modificação na sua estrutura, modifique também no `tomark.sh`.
 
+OBS.: a repetição da linha `cenarios.md > cenariostemp.md && mv cenariostemp.md cenarios.md` é necessária no Mac, pois o `sed -i`, que substitui as mudanças no arquivo de origem, não funciona.
+
 # Exemplos
 
 login.spec.js
