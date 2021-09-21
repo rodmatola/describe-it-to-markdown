@@ -1,4 +1,4 @@
-egrep -Rw 'describe|context|it' cypress/integration/front/ > cenarios.md
+egrep -Rw 'describe|context|it' integration/ > cenarios.md
 sed 's/:/\n/g' cenarios.md > cenariostemp.md && mv cenariostemp.md cenarios.md
 awk '!seen[$0]++' cenarios.md > cenariostemp.md && mv cenariostemp.md cenarios.md
 sed 's/\t//g' cenarios.md > cenariostemp.md && mv cenariostemp.md cenarios.md
