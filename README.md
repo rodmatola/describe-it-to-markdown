@@ -64,21 +64,21 @@ describe('Comprar', () => {
 cenarios.md
 ```markdown
 integration/cypress_poc/compra.spec.js
-# Cenário: 'Comprar'
-  1. ## 'Fazer uma compra com sucesso'
+# Cenário: Comprar
+  1. ## Fazer uma compra com sucesso
 integration/cypress_poc/login.spec.js
-# Cenário: 'Login'
-  1. ## 'Login com sucesso'
-  1. ## 'Login com usuário e/ou senha incorretos'
+# Cenário: Login
+  1. ## Login com sucesso
+  1. ## Login com usuário e/ou senha incorretos
 ```
 
 No relatório fica
 
 integration/cypress_poc/compra.spec.js
-# Cenário: 'Comprar'
-  1. ## 'Fazer uma compra com sucesso'
+# Cenário: Comprar
+  1. ## Fazer uma compra com sucesso
 integration/cypress_poc/login.spec.js
-# Cenário: 'Login'
-  1. ## 'Login com sucesso'
-  1. ## 'Login com usuário e/ou senha incorretos'
+# Cenário: Login
+  1. ## Login com sucesso
+  1. ## Login com usuário e/ou senha incorretos
 
