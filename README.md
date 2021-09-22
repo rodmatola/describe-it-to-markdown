@@ -1,84 +1,97 @@
-# O problema
+**Para versão em português, [README_pt-br.md](https://github.com/rodmatola/describe-it-to-markdown/blob/main/README_pt-br.md)**
 
-Eu estava procurando por alguma ferramenta como [FeatureBook](https://www.npmjs.com/package/featurebook) ou [Feature Express](https://www.npmjs.com/package/feature-express) para transformar meus arquivos `.spec` em um relatório que eu poderia compartilhar, sem executar os testes. Infelizmente, não encontrei nada...
+# The problem
 
-Então eu fiz este script `.sh` para fazer isso por mim.
+I was looking for some tool like [FeatureBook](https://www.npmjs.com/package/featurebook) or [Feature Express](https://www.npmjs.com/package/feature-express) for transform my `.spec` files in a report that I could share, without run the tests. Unfortunately, I didn't found anything...
 
-# O que é o script
+Then I made this simple `.sh` script to do that for me.
 
-São uma série de comandos `grep`, `sed` e `awk` para trocar as palavras chave `describe`, `context`, `it` para `Cenário`, `Contexto` e uma lista ordenada, respectivamente.
+# What it is
 
-Por ainda estar em desenvolvimento, é necessário conferir após rodar o script e fazer alterações manuais, se necessário.
+This script is a bunch of `grep`, `sed` and `awk` commands to replace the keywords `describe`, `context`, `it` to `Scenario`, `Context` and an ordered list, respectively.
 
-# Como rodar
+As it's still under development, it's necessary to check it after running the script and make manual changes if necessary.
 
-* Coloque o arquivo `tomark.sh` na raiz da pasta Cypress
-* de permissão de execução `chmod +x tomark.sh` ou `chmod 777 tomark.sh`, se você não se importar com permissões (pode ser que precise do `sudo`)
-* então `./tomark.sh`
+# How to run
 
-Para funcionar, seu cenários devem estar dentro da pasta da estrutura padrão do Cypress `cypress/integration`. Ele irá olhar todos os aquivos dentro dessa pasta e subpastas. Qualquer modificação na sua estrutura, modifique também no `tomark.sh`.
+- Place the `paraMD.sh` file in the root of the `cypress` folder
+- give execute permission (if don't have) `chmod +x to MD.sh` or `chmod 777 to MD.sh` - if you don't care about permissions (you may need `sudo`)
+- then `./toMD.sh`
 
-OBS.: a repetição da linha `cenarios.md > cenariostemp.md && mv cenariostemp.md cenarios.md` é necessária no Mac, pois o `sed -i`, que substitui as mudanças no arquivo de origem, não funciona.
+To work, your scenarios must be inside the default Cypress `cypress/integration` folder. It will look at all files within that folder and subfolders. Any modification to your structure, also modify in the first line of `toMD.sh`, the path that is enclosed in square brackets in the example below, without the square brackets.
 
-# Exemplos
+`egrep -Rw 'describe|context|it' [integration] > cenarios.md`
+
+If you want to use it in another framework with the same syntax, do the same as above.
+
+NOTE: Repeating the line `cenarios.md > cenariostemp.md && mv cenariostemp.md cenarios.md` is required on Mac because `sed -i`, which overwrites changes in the source file, does not work.
+
+# Examples
 
 login.spec.js
+
 ```javascript
 describe('Login', () => {
-
   beforeEach(() => {
-    cy.visit('https://www.saucedemo.com/')
-  })
+    cy.visit('https://www.saucedemo.com/');
+  });
 
-  it('Login com sucesso', () => {
-    login('standard_user', 'secret_sauce')
-    cy.get('#inventory_filter_container')
-  })
+  it('Success login', () => {
+    login('standard_user', 'secret_sauce');
+    cy.get('#inventory_filter_container');
+  });
 
-  it('Login com usuário e/ou senha incorretos', () => {
-    login('standard_user', '123456')
-    cy.get('.error-button')
-  })
-
-})
+  it('Wrong user/password', () => {
+    login('standard_user', '123456');
+    cy.get('.error-button');
+  });
+});
 ```
 
-compra.spec.js
+buy.spec.js
+
 ```javascript
-describe('Comprar', () => {
-
+describe('Buy', () => {
   beforeEach(() => {
-    cy.visit('https://www.saucedemo.com/')
-    login('standard_user', 'secret_sauce')
-  })
+    cy.visit('https://www.saucedemo.com/');
+    login('standard_user', 'secret_sauce');
+  });
 
-  it('Fazer uma compra com sucesso', () => {
-    AllItens.comprar()
-    Informacoes.preencher_infos()
-    ResumoCompra.confirmar()
-    cy.get('.complete-header')
-  })
-})
+  it('Success purchase', () => {
+    AllItens.buy();
+    Information.fill_infos();
+    Summary.confirm();
+    cy.get('.complete-header');
+  });
+});
 ```
 
-cenarios.md
+scenarios.md
+
 ```markdown
-integration/cypress_poc/compra.spec.js
-# Cenário: Comprar
-  1. ## Fazer uma compra com sucesso
-integration/cypress_poc/login.spec.js
-# Cenário: Login
-  1. ## Login com sucesso
-  1. ## Login com usuário e/ou senha incorretos
+integration/cypress_poc/buy.spec.js
+
+# Scenario: Buy
+
+1. ## Success purchase
+   integration/cypress_poc/login.spec.js
+
+# Scenario: Login
+
+1. ## Success login
+1. ## Wrong user/password
 ```
 
 No relatório fica
 
-integration/cypress_poc/compra.spec.js
-# Cenário: Comprar
-  1. ## Fazer uma compra com sucesso
-integration/cypress_poc/login.spec.js
-# Cenário: Login
-  1. ## Login com sucesso
-  1. ## Login com usuário e/ou senha incorretos
+integration/cypress_poc/buy.spec.js
 
+# Scenario: Buy
+
+1. ## Success purchase
+   integration/cypress_poc/login.spec.js
+
+# Scenario: Login
+
+1. ## Success login
+1. ## Wrong user/password
