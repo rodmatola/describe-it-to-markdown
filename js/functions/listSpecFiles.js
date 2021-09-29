@@ -2,6 +2,9 @@ const glob = require('glob');
 const isSpec = require('./isSpec');
 
 const listSpecFiles = (specPath) => {
+  if (!specPath.endsWith('/')) {
+    specPath = `${specPath}/`;
+  }
   const files = glob.sync(`${specPath}**/*`);
 
   var specList = [];
