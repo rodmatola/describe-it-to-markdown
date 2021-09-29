@@ -1,4 +1,5 @@
 const listSpecFiles = require('./functions/listSpecFiles');
+const readFileContent = require('./functions/readFileContent');
 
 // const path = process.argv[2];
 const fileName =
@@ -9,4 +10,9 @@ const specPath =
 //   '/Users/rodrigomatola/TestandoSuave/repos/cypressXselenium-ruby-rspec-main/cypress/cypress/integration/';
 
 const files = listSpecFiles(specPath);
-console.log(files);
+
+files.forEach((file) => {
+  const fileContent = readFileContent(file);
+  console.log(fileContent);
+});
+// console.log(files);
