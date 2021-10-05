@@ -11,8 +11,17 @@ const specPath =
 
 const files = listSpecFiles(specPath);
 
-files.forEach((file) => {
-  const fileContent = readFileContent(file);
-  console.log(fileContent);
+// files.forEach((file) => {
+
+const fileContent = readFileContent(files[0]);
+
+// console.log(fileContent.replace(/:/g, 'XXXXXXXX'));
+
+const array = fileContent.split(/\n/);
+
+array.find((string) => {
+  if (string.includes('it')) {
+    const obj = string.match('it');
+    console.log(obj.input);
+  }
 });
-// console.log(files);
